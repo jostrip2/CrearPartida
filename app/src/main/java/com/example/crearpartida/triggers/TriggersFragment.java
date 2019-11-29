@@ -19,10 +19,7 @@ import com.example.crearpartida.R;
 
 public class TriggersFragment extends Fragment {
 
-    TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-    TableRow row;
-    TableLayout tlAvis;
-    private int posActual;
+    private String nom;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,22 +27,27 @@ public class TriggersFragment extends Fragment {
         Intent toTriggers = new Intent(getActivity(), Avisos.class);
         startActivity(toTriggers);
 
+        int posActual;
 
-        tlAvis = findViewById(R.id.tlTriggers);
+        TableLayout tlAvis = root.findViewById(R.id.tlTriggers);
 
         TextView tvNom;
-        String nom;
+
+        TableRow row;
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+
         for(posActual = 0; posActual < Globals.getInstance().getGame().getNumJug(); posActual++){
-            row = new TableRow(this);
+            row = new TableRow(getContext());
             row.setLayoutParams(lp);
             nom = Globals.getInstance().getGame().getListaJug()[posActual].getNom();
-            tvNom = new TextView(this);
+            tvNom = new TextView(getContext());
             tvNom.setText(nom);
             tvNom.setPadding(8, 8, 8, 8);
             row.addView(tvNom);
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Globals.getInstance().setJugadorAvisos(Globals.getInstance().getGame().getJugadorConNombre(nom));
                     Intent loadAvis = new Intent(getContext(), Avisos.class);
                     startActivity(loadAvis);
                 }

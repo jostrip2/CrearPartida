@@ -6,7 +6,8 @@ public class Jugador {
     private int vida;
     private String nom;
     private ManaPool playerMana = new ManaPool();
-    private ArrayList<Avis> llistaAvisos;
+    private Avis[] llistaAvisos;
+    private int numAvisos;
 
     public Jugador(){
 
@@ -14,6 +15,7 @@ public class Jugador {
     public Jugador(int vida, String nom) {
         this.vida = vida;
         this.nom = nom;
+        this.numAvisos = 0;
     }
     public void setVida(int vida){
         this.vida = vida;
@@ -30,7 +32,10 @@ public class Jugador {
     public void decreaseVida(){ vida--; }
     public void incrementVida(){ vida++; }
     
-    public void setAvis (Avis avis){ llistaAvisos.add(avis); }
+    public void setAvis (Avis avis){
+        llistaAvisos[numAvisos] = avis;
+        numAvisos++;
+    }
     
 
 }

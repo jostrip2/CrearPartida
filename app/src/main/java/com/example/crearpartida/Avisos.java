@@ -78,7 +78,7 @@ public class Avisos extends AppCompatActivity implements View.OnClickListener, D
             row.addView(espai);
             row.addView(descrip);
     
-            //jugActual.setAvis(new Avis(nombre, desc, quan));
+            Globals.getInstance().getJugadorAvisos().setAvis(new Avis(nombre, desc, quan));
             
             
             // posar-ho al layout
